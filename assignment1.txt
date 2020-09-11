@@ -1,0 +1,23 @@
+
+SELECT * FROM BranchData;
+INSERT INTO BranchData(BranchNumber, Location) VALUES ('1343', 'Toronto');
+SELECT * FROM BranchData;
+SELECT * FROM TransactionData;
+DELETE FROM TransactionData WHERE TransactionCity= 'Vancouver';
+SELECT * FROM TransactionData;
+SELECT * FROM TransactionData ORDER BY TransactionID ASC;
+SELECT * FROM CustomerData ORDER BY Name ASC;
+SELECT * FROM Transactiondata b JOIN CustomerData a ON b.CustomerID=a.CustomerID JOIN BranchData c ON a.HomeBranch=c.BranchNumber;
+SELECT * FROM CustomerData GROUP BY CustomerID;
+SELECT * FROM TransactionData GROUP BY TransactionAmount;
+SELECT * FROM TransactionData WHERE TransactionAmount<300 AND TransactionCity='Toronto';
+SELECT * FROM CustomerData WHERE Name Like "%m%";
+
+SELECT MAX(TransactionAmount) FROM TransactionData;
+SELECT MIN(TransactionAmount) FROM TransactionData;
+SELECT AVG(TransactionAmount) FROM TransactionData;
+SELECT TransactionCity, AVG(TransactionAmount) AS AverageSpend FROM TransactionData GROUP BY TransactionCity;
+SELECT TransactionType, AVG(TransactionAmount) As AverageSpend FROM TransactionData GROUP BY TransactionType;
+SELECT CustomerID, TransactionCity FROM TransactionData
+EXCEPT
+SELECT CustomerID, City FROM CustomerData;
